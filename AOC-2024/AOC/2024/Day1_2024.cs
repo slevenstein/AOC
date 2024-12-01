@@ -1,5 +1,5 @@
 ﻿
-class Day1
+class Day1_2024
 {
     public static void Solution(int part)
     {
