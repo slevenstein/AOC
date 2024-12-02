@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "Day1-1": {
+    "AOC": {
       "commandName": "Project",
-      "commandLineArgs": "2024 1 2"
+      "commandLineArgs": "2024 2 1"
     }
   }
 }
