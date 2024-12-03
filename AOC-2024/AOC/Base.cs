@@ -9,15 +9,18 @@ class Day_2024
         for (int i = 0; i < lines.Count; i++)
         {
             string line = lines[i];
-            for (int w = 0; w < 2; w++)
-                line = line.Trim().Replace("  ", " ");
-
-            for (int k = 0; k < lines.Count; k++)
+            for (int k = 0; k < line.Length; k++)
             {
+                char c = line[k];
 
             }
 
             string[] strings = line.Split(' ');
+            for (int k = 0; k < strings.Length; k++)
+            {
+                string s = strings[k];
+
+            }
         }
 
 
@@ -26,6 +29,10 @@ class Day_2024
 }
 
 /*
+line.Split(' ');
+line.Trim().Replace("  ", " ");
+
+
 Help:
 3-2 - debugging help -> add *'s to border
 5-2 - hint -> do in reverse
