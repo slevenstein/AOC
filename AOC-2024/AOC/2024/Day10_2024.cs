@@ -1,7 +1,4 @@
-﻿
-using System.Collections.Generic;
-
-class Day10_2024
+﻿class Day10_2024
 {
     public static void Solution(int part)
     {
