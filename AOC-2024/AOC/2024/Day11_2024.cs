@@ -44,7 +44,7 @@ class Day11_2024
                 
             }
             stones = newStones;
-            Console.WriteLine(n);
+            //Console.WriteLine(n);
         }
 
         foreach (var stone in stones)
