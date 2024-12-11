@@ -1,4 +1,4 @@
-﻿class Day6_2024
+﻿internal class Day6_2024
 {
     public static void Solution(int part)
     {
@@ -8,7 +8,7 @@
 
         int startY = 0;
         int startX = 0;
-        for ( ; startY < lines.Count; startY++)
+        for (; startY < lines.Count; startY++)
         {
             char[] line = lines[startY];
             bool startFound = false;
@@ -31,10 +31,12 @@
 
         HashSet<(int y, int x)> visited = [];
 
-        RunGuardPatrol(visited, null);
+        RunGuardPatrol(false);
 
         if (part == 1)
+        {
             sum = visited.Count;
+        }
         else
         {
             visited.Remove((startY, startX));
@@ -43,21 +45,22 @@
             {
                 char old = lines[y][x];
                 lines[y][x] = '#';
-                RunGuardPatrol(null, []);
+                RunGuardPatrol(true);
                 lines[y][x] = old;
-
             }
         }
 
         Console.WriteLine(sum);
+        return;
 
 
         // returns true
-        void RunGuardPatrol(HashSet<(int y, int x)>? visited, HashSet<(int y, int x, Direction dir)>? prevMoves)
+        void RunGuardPatrol(bool checkForLoop)
         {
             int y = startY;
             int x = startX;
             Direction currDir = Direction.UP;
+            HashSet<(int y, int x, Direction dir)> prevMoves = [];
             while (x < lines[0].Length && y < lines[0].Length && x >= 0 && y >= 0)
             {
                 if (lines[y][x] == '#')
@@ -70,20 +73,20 @@
                 }
                 else
                 {
-                    // do part 1 if visited is not null
-                    visited?.Add((y, x));
-
-                    // do part 2 if prevMoves is not null
-                    if (prevMoves != null)
+                    if (!checkForLoop)
                     {
-                        // check for loop
-                        var move = (y, x, currDir);
-                        if (prevMoves.Contains(move))
+                        // do part 1: fill out visited list
+                        visited.Add((y, x));
+                    }
+                    else
+                    {
+                        // do part 2: check for loop
+                        (int y, int x, Direction currDir) move = (y, x, currDir);
+                        if (!prevMoves.Add(move))
                         {
                             sum++;
                             break;
                         }
-                        prevMoves.Add(move);
                     }
                 }
 
@@ -91,38 +94,36 @@
                 Move(ref y, ref x, currDir, 1);
             }
         }
-    }   
-    
-    enum Direction
+    }
+
+    // step is either +1 or -1
+    private static void Move(ref int y, ref int x, Direction dir, int step)
+    {
+        switch (dir)
+        {
+            case Direction.RIGHT:
+                x += step;
+                break;
+            case Direction.DOWN:
+                y += step;
+                break;
+            case Direction.LEFT:
+                x -= step;
+                break;
+            case Direction.UP:
+                y -= step;
+                break;
+        }
+    }
+
+    private enum Direction
     {
         RIGHT,
         DOWN,
         LEFT,
         UP
     }
-
-    // step is either +1 or -1
-    static void Move(ref int y, ref int x, Direction dir, int step)
-    {
-        if (dir == Direction.RIGHT)
-        {
-            x += step;
-        }
-        else if (dir == Direction.DOWN)
-        {
-            y += step;
-        }
-        else if (dir == Direction.LEFT)
-        {
-            x -= step;
-        }
-        else if (dir == Direction.UP)
-        {
-            y -= step;
-        }
-    }
 }
-
 
 
 /*
@@ -138,7 +139,7 @@ Help:
 10-2 - hint -> rasterization
 12-2 - hint -> DP/cache, dictionary key to string
 17-1 - Dijkstra’s refresher
-	   hint -> visited data: posn, direction, sameMoves
+       hint -> visited data: posn, direction, sameMoves
 18-2 - hint -> Shoelaace + Pick's formula
 24-2 - include unknown in initial equation
 

@@ -1,4 +1,5 @@
-﻿internal class Base
+﻿
+class Day_2024
 {
     public static void Solution(int part)
     {
@@ -11,12 +12,14 @@
             for (int k = 0; k < line.Length; k++)
             {
                 char c = line[k];
+
             }
 
             string[] strings = line.Split(' ');
             for (int k = 0; k < strings.Length; k++)
             {
                 string s = strings[k];
+
             }
         }
 
@@ -38,7 +41,7 @@ Help:
 10-2 - hint -> rasterization
 12-2 - hint -> DP/cache, dictionary key to string
 17-1 - Dijkstra’s refresher
-       hint -> visited data: posn, direction, sameMoves
+	   hint -> visited data: posn, direction, sameMoves
 18-2 - hint -> Shoelaace + Pick's formula
 24-2 - include unknown in initial equation
 

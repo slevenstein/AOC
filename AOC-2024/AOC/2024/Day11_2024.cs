@@ -5,8 +5,6 @@ class Day11_2024
     {
         List<string> lines = File.ReadLines(@"D:\SCL33\Downloads\input").ToList();
 
-        long sum = 0;
-
         string line = lines[0];
         Dictionary<long, long> stones = line.Split(' ').Select(long.Parse)
             .ToDictionary(n => n, n => (long) 1);
@@ -14,31 +12,29 @@ class Day11_2024
         for (int n = 0; n < (part == 1 ? 25 : 75); n++)
         {
             Dictionary<long, long> newStones = [];
-            foreach (var stone in stones)
+            foreach ((long num, long frequency) in stones)
             {
-                long num = stone.Key;
-                long frequency = stone.Value;
                 string numString = num.ToString();
                 int size = numString.Length;
                 if (size % 2 == 0)
                 {
-                    AddOrMultiplyValue(
+                    InsertOrAddFrequency(
                         newStones, 
                         int.Parse(numString[..(size / 2)]), 
                         frequency);
 
-                    AddOrMultiplyValue(
+                    InsertOrAddFrequency(
                         newStones,
                         int.Parse(numString[(size / 2)..]), 
                         frequency);
                 }
                 else if (num == 0)
                 {
-                    AddOrMultiplyValue(newStones, 1, frequency);
+                    InsertOrAddFrequency(newStones, 1, frequency);
                 }
                 else
                 {
-                    AddOrMultiplyValue(newStones, num * 2024, frequency);
+                    InsertOrAddFrequency(newStones, num * 2024, frequency);
                 }
 
                 
@@ -47,11 +43,11 @@ class Day11_2024
             //Console.WriteLine(n);
         }
 
-        foreach (var stone in stones)
-            sum += stone.Value;
+        long sum = stones.Sum(stone => stone.Value);
         Console.WriteLine(sum);
     }
-    static void AddOrMultiplyValue(Dictionary<long, long> map, long num, long frequency)
+
+    private static void InsertOrAddFrequency(Dictionary<long, long> map, long num, long frequency)
     {
         if (!map.TryAdd(num, frequency))
         {

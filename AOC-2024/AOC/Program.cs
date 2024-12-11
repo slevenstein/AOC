@@ -15,7 +15,7 @@ class AOC
         Type? type = Type.GetType(className);
 
         // Invoke the method if the class and method exist
-        type?.GetMethod("Solution")?.Invoke(null, new object[] { part });
+        type?.GetMethod("Solution")?.Invoke(null, [part]);
     }
 }
 

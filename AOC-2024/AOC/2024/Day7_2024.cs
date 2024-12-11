@@ -1,4 +1,4 @@
-﻿internal class Base
+﻿internal class Day7_2024
 {
     public static void Solution(int part)
     {
