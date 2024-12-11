@@ -49,4 +49,7 @@ Tips:
 12-2, 11-2 - use long for big numbers (wrap in checked context?)
 all - SLEEP/TAKE BREAK WHEN STUCK
 
+(2024)
+Tips:
+10 - dont overthink
 */
