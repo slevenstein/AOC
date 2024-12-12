@@ -1,4 +1,6 @@
-﻿internal class Day7_2024
+﻿// ReSharper disable RedundantToStringCallForValueType
+
+internal class Day7_2024
 {
     public static void Solution(int part)
     {
@@ -34,7 +36,7 @@
                EqualsResult(new Queue<int>(numsRemaining),
                    currResult * next, result, part) ||
                (part == 2 && EqualsResult(new Queue<int>(numsRemaining),
-                   long.Parse(currResult + next), result, part));
+                   long.Parse(currResult.ToString() + next.ToString()), result, part));
     }
 }
 
