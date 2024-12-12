@@ -4,24 +4,37 @@
     {
         List<string> lines = File.ReadLines(@"D:\SCL33\Downloads\input").ToList();
 
-        int sum = 0;
-        for (int i = 0; i < lines.Count; i++)
+        long sum = 0;
+        foreach (string line in lines)
         {
-            string line = lines[i];
-            for (int k = 0; k < line.Length; k++)
-            {
-                char c = line[k];
-            }
-
             string[] strings = line.Split(' ');
-            for (int k = 0; k < strings.Length; k++)
+            long result = long.Parse(strings[0].Remove(strings[0].Length - 1));
+
+            Queue<int> numsQueue = new(strings.Skip(1).Select(int.Parse));
+            if (EqualsResult(numsQueue, numsQueue.Dequeue(), result, part))
             {
-                string s = strings[k];
+                sum += result;
             }
         }
 
-
         Console.WriteLine(sum);
+    }
+
+    private static bool EqualsResult(Queue<int> numsRemaining, long currResult, long result, int part)
+    {
+        if (numsRemaining.Count == 0)
+        {
+            return currResult == result;
+        }
+
+        int next = numsRemaining.Dequeue();
+        // +, *, ||
+        return EqualsResult(new Queue<int>(numsRemaining),
+                   currResult + next, result, part) ||
+               EqualsResult(new Queue<int>(numsRemaining),
+                   currResult * next, result, part) ||
+               (part == 2 && EqualsResult(new Queue<int>(numsRemaining),
+                   long.Parse(currResult + next), result, part));
     }
 }
 
