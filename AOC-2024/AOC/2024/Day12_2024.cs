@@ -17,26 +17,9 @@
                     continue;
 
                 int area = 0;
-                int adjacentPerimeters = 0;
 
                 List<(int y, int x, Direction dir)> perimeters = [];
                 GetRegionMetrics(i, k);
-
-                for (int l = 0; l < perimeters.Count; l++)
-                {
-                    (int y, int x, Direction dir) perimeter1 = perimeters[l];
-                    for (int r = l + 1; r < perimeters.Count; r++)
-                    {
-                        (int y, int x, Direction dir) perimeter2 = perimeters[r];
-                        if (Math.Abs(perimeter1.x - perimeter2.x) +
-                            Math.Abs(perimeter1.y - perimeter2.y)
-                            == 1 &&
-                            perimeter1.dir == perimeter2.dir)
-                        {
-                            adjacentPerimeters++;
-                        }
-                    }
-                }
 
                 if (part == 1)
                 {
@@ -44,6 +27,23 @@
                 }
                 else
                 {
+                    int adjacentPerimeters = 0;
+                    for (int l = 0; l < perimeters.Count; l++)
+                    {
+                        (int y, int x, Direction dir) perimeter1 = perimeters[l];
+                        for (int r = l + 1; r < perimeters.Count; r++)
+                        {
+                            (int y, int x, Direction dir) perimeter2 = perimeters[r];
+                            if (Math.Abs(perimeter1.x - perimeter2.x) +
+                                Math.Abs(perimeter1.y - perimeter2.y)
+                                == 1 &&
+                                perimeter1.dir == perimeter2.dir)
+                            {
+                                adjacentPerimeters++;
+                            }
+                        }
+                    }
+
                     int sides = perimeters.Count - adjacentPerimeters;
                     sum += area * sides;
                 }
