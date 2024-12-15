@@ -55,20 +55,21 @@
         {
             // find convergence
             HashSet<int> first = [];
-            for (int i = 1706; i < 10500; i+=103)
+            for (int i = 1706; i < 10500; i += 103)
             {
                 first.Add(i);
             }
-            for (int i = 1715; i < 10500; i+=101)
+
+            for (int i = 1715; i < 10500; i += 101)
             {
                 if (first.Contains(i))
                 {
                     sum = i;
                 }
             }
-            
+
             // visualization
-            bool visualize = false;
+            bool visualize = true;
             if (visualize)
             {
                 List<(int y, int x)> positions = [];
@@ -86,7 +87,7 @@
                     velocities.Add((vVals[0], vVals[1]));
                 }
 
-                for (int s = 7370; s < 100000; s++)
+                for (int s = sum; s < sum + 1; s++)
                 {
                     for (int y = 0; y < maxHeight; y++)
                     {
@@ -122,12 +123,13 @@
                 }
             }
         }
-        
+
         Console.WriteLine(sum);
     }
-    
+
     // mod without returning negative
-    private static int Mod(int a, int b) {
+    private static int Mod(int a, int b)
+    {
         int ret = a % b;
         return ret >= 0 ? ret : ret + b;
     }
