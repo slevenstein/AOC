@@ -3,6 +3,7 @@
     public static void Solution(int part)
     {
         List<string> lines = File.ReadLines(@"D:\SCL33\Downloads\input").ToList();
+        //List<char[]> lines = File.ReadLines(@"D:\SCL33\Downloads\input").Select(s => s.ToCharArray()).ToList();
 
         int sum = 0;
         for (int i = 0; i < lines.Count; i++)
