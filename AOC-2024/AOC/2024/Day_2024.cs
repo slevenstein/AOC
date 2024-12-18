@@ -50,8 +50,8 @@ all - SLEEP/TAKE BREAK WHEN STUCK
 
 (2024)
 Tips:
-10 - dont overthink
+10 - don't overthink
 
 
-Github Repo: https://github.com/slevenstein/AOC/tree/main/AOC-2024/AOC/2024
+GitHub Repo: https://github.com/slevenstein/AOC/tree/main/AOC-2024/AOC/2024
 */
